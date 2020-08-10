@@ -4,70 +4,52 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Q & A Site</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/app.css">
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @foreach ($questions as $question)
-                <li>{{ $question->question_text }}</li>
-            @endforeach
-        </div>
+        <h1 class="text-center my-5">
+            <a href="https://challenge.veganhacktivists.org" class="text-dark">
+                Q & A
+            </a>
+        </h1>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <form class="pb-3 border-bottom mb-3" action="#" method="POST">
+                        <div class="form-group">
+                            <textarea
+                                name="question"
+                                class="form-control">
+                            </textarea>
+                        </div>
+                        <div class="text-right">
+                            <button class="btn btn-primary" type="submit">
+                                Ask away
+                            </button>
+                        </div>
+                    </form>
+
+                    <h2 class="mb-3 p-3 bg-primary text-white">Questions</h2>
+                    <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
+                        @foreach ($questions as $question)
+                            <h3 class="m-0">
+                                <a href="#" class="text-dark">
+                                    {{ $question->question_text }}
+                                </a>
+                            </h3>
+                            <div>
+                                <span class="badge badge-primary">
+                                    1 answers
+                                </span>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
     </body>
 </html>
