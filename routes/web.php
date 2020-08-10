@@ -18,5 +18,5 @@ Route::get('/', function () {
     $questions = DB::select('select * from question', [1]);
     $answers = DB::select('select * from answer', [0]);
 
-    return view('welcome');
+    return view('main', ['questions' => $questions, 'answers' => $answers]);
 });
