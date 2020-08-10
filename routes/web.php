@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $questions = DB::select('select * from question', [1]);
+    $answers = DB::select('select * from answer', [0]);
+
     return view('welcome');
 });
