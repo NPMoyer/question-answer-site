@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\DB;
 */
 
 Route::get('/', function () {
-    $questions = DB::select('select * from question', [1]);
-    $answers = DB::select('select * from answer', [0]);
+    $questions = DB::table('questions')->get();
+    $answers = DB::table('answers')->pluck('id', 'question_id');
 
     return view('main', ['questions' => $questions, 'answers' => $answers]);
 });
