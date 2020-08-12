@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 Route::get('/questions/{id}', function ($id) {
     $question = DB::table('questions')->where('id', $id)->select('question_text')->first();
-    $answers = DB::table('answers')->get();
+    $answers = DB::table('answers')->where('question_id', $id)->get();
 
     return view('answer_list', ['question_text' => $question->question_text, 'answers' => $answers]);
 });
