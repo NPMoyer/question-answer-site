@@ -18,5 +18,12 @@ Route::get('/', function () {
     $questions = DB::table('questions')->get();
     $answers = DB::table('answers')->pluck('id', 'question_id');
 
-    return view('main', ['questions' => $questions, 'answers' => $answers]);
+    return view('question_list', ['questions' => $questions, 'answers' => $answers]);
+});
+
+Route::get('/questions/{id}', function ($id) {
+    $question = DB::table('questions')->where('id', $id)->select('question_text')->first();
+    $answers = DB::table('answers')->get();
+
+    return view('answer_list', ['question_text' => $question->question_text, 'answers' => $answers]);
 });

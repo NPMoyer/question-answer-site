@@ -7,8 +7,7 @@
 
     <title>Nick's Q & A Site</title>
 
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/app.css">
+    <link rel="stylesheet" type="text/css" href="/css/app.css">
 </head>
 
 <body>
@@ -37,7 +36,7 @@
                 @foreach ($questions as $question)
                 <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
                     <h3 class="m-0">
-                        <a href="/question/{{$question->id}}" class="text-dark">
+                        <a href="/questions/{{$question->id}}" class="text-dark">
                             {{$question->question_text}}
                         </a>
                     </h3>
