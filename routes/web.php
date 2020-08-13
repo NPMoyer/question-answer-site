@@ -27,3 +27,11 @@ Route::get('/questions/{id}', function ($id) {
 
     return view('answer_list', ['question_text' => $question->question_text, 'answers' => $answers]);
 });
+
+Route::post('/questions', function ($question) {
+    DB::table('questions')->insert(
+        array('question_text' => $question)
+    );
+
+    return view('answer_list', ['question_text' => $question]);
+});

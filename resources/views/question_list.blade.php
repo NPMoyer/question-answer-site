@@ -20,7 +20,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 offset-lg-3">
-                <form class="pb-3 border-bottom mb-3" action="#" method="POST">
+                <form class="pb-3 border-bottom mb-3" action="/questions" method="POST">
+                    @csrf
                     <div class="form-group">
                         <textarea name="question" class="form-control"
                             placeholder="Why eat animals when we can just eat plants?"></textarea>
