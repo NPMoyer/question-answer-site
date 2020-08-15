@@ -20,7 +20,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 offset-lg-3">
-                <h2 class="mb-3 p-3 bg-primary text-white">{{$question->question_text}}</h2>
+                <h2 class="mb-0 p-3 bg-primary text-white">{{$question->question_text}}</h2>
+                <p class="mb-3 pl-3 bg-primary text-white">Date Entered: {{$question->date}}</p>
                 @if ($answers->count() < 1)
                 <p class="border-bottom pb-3 font-weight-bold">
                     No answers yet! Be the first to answer by using the form below.
