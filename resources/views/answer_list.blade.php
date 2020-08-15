@@ -20,7 +20,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 offset-lg-3">
-                <h2 class="mb-3 p-3 bg-primary text-white">{{$question_text}}</h2>
+                <h2 class="mb-3 p-3 bg-primary text-white">{{$question->question_text}}</h2>
                 @if ($answers->count() < 1)
                 <p class="border-bottom pb-3 font-weight-bold">
                     No answers yet! Be the first to answer by using the form below.
@@ -32,12 +32,13 @@
                     </p>
                     @endforeach
                 @endif
-                <form class="mt-3" action="#" method="POST">
+                <form class="mt-3" action="/questions/{{$question->id}}/answers" method="POST">
+                    @csrf
                     <h4 class="bg-primary text-white p-3">
                         Answer the question!
                     </h4>
                     <div class="form-group">
-                        <textarea name="question" class="form-control"></textarea>
+                        <textarea name="answer" class="form-control"></textarea>
                     </div>
                     <div class="text-right">
                         <button class="btn btn-primary" type="submit">

@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Symfony\Component\VarDumper\VarDumper;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,16 +24,24 @@ Route::get('/', function () {
 });
 
 Route::get('/questions/{id}', function ($id) {
-    $question = DB::table('questions')->where('id', $id)->select('question_text')->first();
+    $question = DB::table('questions')->where('id', $id)->first();
     $answers = DB::table('answers')->where('question_id', $id)->get();
 
-    return view('answer_list', ['question_text' => $question->question_text, 'answers' => $answers]);
+    return view('answer_list', ['question' => $question, 'answers' => $answers]);
 });
 
-Route::post('/questions', function ($question) {
-    DB::table('questions')->insert(
-        array('question_text' => $question)
+Route::post('/questions', function (Request $request) {
+    $questionId = DB::table('questions')->insertGetId(
+        array('question_text' => $request->question)
     );
 
-    return view('answer_list', ['question_text' => $question]);
+    return redirect('questions/'.$questionId);
+});
+
+Route::post('/questions/{id}/answers', function ($id, Request $request) {
+    DB::table('answers')->insert(
+        array('answer_text' => $request->answer, 'question_id' => $id)
+    );
+
+    return redirect('questions/'.$id);
 });
