@@ -26,6 +26,15 @@
                         <textarea name="question" class="form-control"
                             placeholder="Why eat animals when we can just eat plants?"></textarea>
                     </div>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="text-right">
                         <button class="btn btn-primary" type="submit">
                             Ask away

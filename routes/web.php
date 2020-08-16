@@ -17,7 +17,7 @@ use Symfony\Component\VarDumper\VarDumper;
 */
 
 Route::get('/', function () {
-    $questions = DB::table('questions')->get();
+    $questions = DB::table('questions')->orderBy('date', 'desc')->get();
     $answers = DB::table('answers')->pluck('id', 'question_id');
 
     return view('question_list', ['questions' => $questions, 'answers' => $answers]);
@@ -31,6 +31,10 @@ Route::get('/questions/{id}', function ($id) {
 });
 
 Route::post('/questions', function (Request $request) {
+    $request->validate([
+        'question' => ['required', 'min:5']
+    ]);
+
     $questionId = DB::table('questions')->insertGetId(
         array('question_text' => $request->question)
     );
@@ -39,6 +43,10 @@ Route::post('/questions', function (Request $request) {
 });
 
 Route::post('/questions/{id}/answers', function ($id, Request $request) {
+    $request->validate([
+        'answer' => ['required', 'min:5']
+    ]);
+
     DB::table('answers')->insert(
         array('answer_text' => $request->answer, 'question_id' => $id)
     );
