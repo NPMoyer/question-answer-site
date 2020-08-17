@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use Symfony\Component\VarDumper\VarDumper;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +18,9 @@ use Symfony\Component\VarDumper\VarDumper;
 Route::get('/', function () {
     $questions = DB::table('questions')->orderBy('date', 'desc')->get();
     $answers = DB::table('answers')->pluck('id', 'question_id');
+    $placeholder = DB::table('placeholders')->inRandomOrder()->first();
 
-    return view('question_list', ['questions' => $questions, 'answers' => $answers]);
+    return view('question_list', ['questions' => $questions, 'answers' => $answers, 'placeholder' => $placeholder]);
 });
 
 Route::get('/questions/{id}', function ($id) {

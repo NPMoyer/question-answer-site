@@ -24,13 +24,13 @@
                     @csrf
                     <div class="form-group">
                         <textarea name="question" class="form-control"
-                            placeholder="Why eat animals when we can just eat plants?"></textarea>
+                            placeholder={{$placeholder->placeholder_text}}></textarea>
                     </div>
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
+                                    <li>{{$error}}</li>
                                 @endforeach
                             </ul>
                         </div>
