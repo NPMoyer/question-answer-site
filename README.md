@@ -29,3 +29,5 @@ Navigate to the project folder and start the local server:
 ```
 php artisan serve
 ```
+
+Once the development server starts, navigate to it in the browser. 
