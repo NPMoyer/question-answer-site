@@ -39,8 +39,17 @@
                         Answer the question!
                     </h4>
                     <div class="form-group">
-                        <textarea name="answer" class="form-control"></textarea>
+                        <textarea name="answer" class="form-control">{{old('answer')}}</textarea>
                     </div>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{$error}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="text-right">
                         <button class="btn btn-primary" type="submit">
                             Answer question

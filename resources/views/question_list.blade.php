@@ -24,7 +24,7 @@
                     @csrf
                     <div class="form-group">
                         <textarea name="question" class="form-control"
-                            placeholder={{$placeholder->placeholder_text}}></textarea>
+                            placeholder="{{$placeholder->placeholder_text}}">{{old('question')}}</textarea>
                     </div>
                     @if ($errors->any())
                         <div class="alert alert-danger">

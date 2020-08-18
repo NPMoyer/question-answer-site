@@ -31,25 +31,31 @@ Route::get('/questions/{id}', function ($id) {
 });
 
 Route::post('/questions', function (Request $request) {
-    $request->validate([
-        'question' => ['required', 'min:5']
-    ]);
+    if ($request->validate([
+        'question' => ['required', 'min:5', 'regex:/.*\?$/']
+    ],[
+        'question.regex' => 'The question must end with a question mark ("?").'
+    ])){
+        $questionId = DB::table('questions')->insertGetId(
+            array('question_text' => $request->question)
+        );
 
-    $questionId = DB::table('questions')->insertGetId(
-        array('question_text' => $request->question)
-    );
-
-    return redirect('questions/'.$questionId);
+        return redirect('questions/'.$questionId);
+    } else {
+        return redirect()->back()->withInput();
+    }
 });
 
 Route::post('/questions/{id}/answers', function ($id, Request $request) {
-    $request->validate([
+    if ($request->validate([
         'answer' => ['required', 'min:5']
-    ]);
+    ])) {
+        DB::table('answers')->insert(
+            array('answer_text' => $request->answer, 'question_id' => $id)
+        );
 
-    DB::table('answers')->insert(
-        array('answer_text' => $request->answer, 'question_id' => $id)
-    );
-
-    return redirect('questions/'.$id);
+        return redirect('questions/'.$id);
+    } else {
+        return redirect()->back()->withInput();
+    }
 });
